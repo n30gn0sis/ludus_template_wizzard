@@ -1,20 +1,10 @@
 #!/usr/bin/env python3
 import re
 from pathlib import Path
+import sys
 
-REQUIRED_VARS = [
-    "proxmox_url",
-    "proxmox_host",
-    "proxmox_username",
-    "proxmox_password",
-    "proxmox_storage_pool",
-    "proxmox_storage_format",
-    "proxmox_skip_tls_verify",
-    "proxmox_pool",
-    "iso_storage_pool",
-    "ansible_home",
-    "ludus_nat_interface",
-]
+sys.path.insert(0, str(Path(__file__).parent / "scripts"))
+from template_wizard_common import REQUIRED_VARS  # noqa: E402
 
 for file in Path('.').glob('*.pkr.hcl'):
     text = file.read_text()
