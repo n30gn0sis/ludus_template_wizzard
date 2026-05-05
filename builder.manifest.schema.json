@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ludus Template Builder Manifest",
+  "type": "object",
+  "required": ["metadata", "ludus_required_vars", "templates"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" }
+      }
+    },
+    "ludus_required_vars": {
+      "type": "array",
+      "items": { "type": "string" },
+      "contains": { "const": "proxmox_url" },
+      "minItems": 11
+    },
+    "templates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "file", "os_family"],
+        "properties": {
+          "name": { "type": "string", "pattern": ".*-template$" },
+          "file": { "type": "string", "pattern": ".*\\.pkr\\..*" },
+          "os_family": { "type": "string", "enum": ["linux", "windows", "macos"] },
+          "automated": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+metadata:
+  name: ludus-template-builder
+  version: 0.1.0
+
+ludus_required_vars:
+  - proxmox_url
+  - proxmox_host
+  - proxmox_username
+  - proxmox_password
+  - proxmox_storage_pool
+  - proxmox_storage_format
+  - proxmox_skip_tls_verify
+  - proxmox_pool
+  - iso_storage_pool
+  - ansible_home
+  - ludus_nat_interface
+
+templates:
+  - name: my-ubuntu-template
+    file: my-ubuntu-template.pkr.hcl
+    os_family: linux
+    automated: true
+  - name: my-win2022-template
+    file: my-win2022-template.pkr.hcl
+    os_family: windows
+    automated: true
+  - name: my-macos-template
+    file: manual-build-only.md
+    os_family: macos
+    automated: false
